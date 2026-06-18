@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento - help.debs</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #f4f0fb;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 24px;
+    max-width: 380px;
+    width: 100%;
+    padding: 32px 28px;
+    box-shadow: 0 10px 40px rgba(106, 76, 175, 0.15);
+    text-align: center;
+  }
+  .brand {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #9b8bc4;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 22px;
+    color: #2d2640;
+    margin-bottom: 4px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #8c84a3;
+    margin-bottom: 24px;
+  }
+  .value-box {
+    background: #f4f0fb;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  .value-label {
+    font-size: 12px;
+    color: #9b8bc4;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .value-amount {
+    font-size: 32px;
+    font-weight: 700;
+    color: #5b3fa6;
+  }
+  .qr-wrap {
+    background: #ffffff;
+    border: 1px solid #ece6f7;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  .qr-wrap img {
+    width: 100%;
+    max-width: 220px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+  }
+  .key-box {
+    background: #f4f0fb;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+  .key-label {
+    font-size: 11px;
+    color: #9b8bc4;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .key-value {
+    font-size: 11px;
+    color: #5b3fa6;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    font-family: monospace;
+    line-height: 1.5;
+  }
+  .copy-btn {
+    width: 100%;
+    background: #6b4fc7;
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .copy-btn:active { background: #5b3fa6; }
+  .copy-feedback {
+    font-size: 13px;
+    color: #6b4fc7;
+    margin-top: 10px;
+    height: 16px;
+  }
+  .footer {
+    margin-top: 24px;
+    font-size: 12px;
+    color: #b3aac9;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand">help.debs</div>
+    <h1>Pagamento via Pix</h1>
+    <p class="subtitle">Laís, segue o pagamento da sua aula 💜</p>
+
+    <div class="value-box">
+      <div class="value-label">Valor</div>
+      <div class="value-amount">R$ 297,00</div>
+    </div>
+
+    <div class="qr-wrap">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjoAAAI6AQAAAAAGM99tAAAFYElEQVR4nO2dQYrkOBBFf4wNs3RCHSCPIt+gjzRnqhvYR6kDDEjLBJmYhRRSON0wDZ3FiMmvhXGl7YcNv4LQV0gSxUva/sdrOABBBBFEEEEEEUQQQQT9X0BS2wwgiYjcADscAsAOu8yQFYCsyR5av+ONCCLoJaCgqqqx6lk1AggRANKfKisAWdMM+UszsIsIgElVVfUMetkbEUTQS0CpBV9UFesGAFgygDRDt0W1iDporveVKP89b0QQQb/T5p/9qEAGkD4ywqdA97tCwudH1v1HtFvSN70RQQS9oj0rW5Fu5UzC9pByBki74ZiBJV5d8PE+jaC3BpmyFwWQAOw/8ox9nbICkwow5RK993uGYAGANJd0xOt7vE8j6K1B8L1ATIoQf/VgDwVV1W28TyPorUElZvvguzxEgYdgv0Gw3yYo0lF+U6RDgOUhNcp/wxsRRNBLWonZ1fWzgIwlQ1Uzemgu3kj1+jJ0w6S6GYAxm6DBQCZMAFXPEUXUlqZMJnn7D/CHSGUTNCbIKbsIuF/YrmcImi16L6q6LapUNkEjgnw2UnQaa8wu2m2jkUXe7azHcSqboBFBzhtxYt0A1Iy7ZCOAbksdeSz/AdsJQGUTNBioCrOEZutG+hS7RPR8jdkW5en6ETQi6CTRCJ9E125ktnC92FmwCygOOJVN0MCgQ4BFFUgiCF8ismJSWdNcrb/wVav+gFRLWXtt1NCfRtA7giwbORskwVySUzYyqW5o/l+cmI0QNC6oKTtbz3CpKoZLNYrRPdm9fYjdfG8qm6DBQOaNmJ57Ym2Gn3ncJSXpQm+iprIJGhDkYnbJMoCn8cbsjcGtdS2bvJmNEDQi6DmTLvnz2fWrjkiszrYbwqE3QtCooEvdSE22Wx+xV7Zav/HyJ5VN0HigUsUqQY+5uHnha851Ek0ZdDxKPavut1ifKeWtgnKLvviNCCLoJc3F7GDp9KmMxI+uu0ntNWaDeTZBQ4LqbLEQP7IgfWQAU8YuUxmCkfBpB2Au0yF1v+cZ9WYwZhM0NuiQkn64WWBfdWkGKxTJcNk1bMRd1m96I4II+p3W/ezaFtXqbEdbUwcA+m++LfSzCRoT1PJsX9dXA3dzSQC4GpE6QrmwIoqggUE46XmyM/UFfybqSd0wZbO8qWyCRgS1+myfOpcLtWJV2+hNH3lsjX42QYOCfDayAVb4FM+h+Wz49Wc3gK4fQUOCfFpRy6L69APLpHvGHSxYP6UuVDZBg4Esz46wBRlaXhJ6vtFUjDanxnctqWyChgO1fENbabZdqEXagM0ysL5kGXmMzEYIGhh0XjAHsEK+OmGmz+a18ZlmpNjCDVQ2QSOC3Hojl2Wf0ORtRYDeKjl1MqlsggYDtbnrua0RNdks9j4Q2QZpWtrdcxUqm6ARQWdvRNWnzs0Rca5fnyPWlhpmNkLQgCC33ohbIUctKmtbdxVt7UqXl7hpN+N9GkFvDTqtWKnez/bdyD6lN+LZFmHMJmhEUJ1TUzftuJUzCfGYEbaHKJK02ybFvk4Z+z3PtnHNYduBjPdpBL016FQFor0Oqp21eb29VMrPg2QPkqCRQX0PX93SDFmTSNn4dEU9WGu7eaQZ2O9c/YygMUHPu3lcrZLrHIT2BNfPJmh4UN/DN81Q1YfoZruti9wA7PeaoZS92OsW1Qf3XSdoSJCriLIRGJhtHduYzdJvQVtxp50xZhM0Hui6O/Xy96y7AILlIbrfFQhfAlT7pCxOwl3zCBocdMmza7VIPpnaeFp+uK83zPpsgsYEXfbw7a6fn9ILNz7Tx2zcJiBUNkFjgUT//Z5faft4n0YQQQQRRBBBBBFEEEH/GegfkG1WsL7uilAAAAAASUVORK5CYII=" alt="QR Code Pix">
+    </div>
+
+    <div class="key-box">
+      <div class="key-label">Código Pix Copia e Cola</div>
+      <div class="key-value" id="pixKey">00020101021126680014br.gov.bcb.pix0136e5aeb5b2-a5c5-40a3-a4ca-950dff9795fb0206Lais265204000053039865406297.005802BR5922DEBORA DOS S B MOREIRA6013CAMPOS DOS GO62070503***6304E67F</div>
+    </div>
+
+    <button class="copy-btn" onclick="copiarPix()">Copiar código Pix</button>
+    <div class="copy-feedback" id="feedback"></div>
+
+    <div class="footer">help.debs · pagamento seguro</div>
+  </div>
+
+  <script>
+    function copiarPix() {
+      const texto = document.getElementById('pixKey').innerText;
+      navigator.clipboard.writeText(texto).then(() => {
+        const fb = document.getElementById('feedback');
+        fb.textContent = 'Código copiado! ✅';
+        setTimeout(() => fb.textContent = '', 2500);
+      });
+    }
+  </script>
+</body>
+</html>
